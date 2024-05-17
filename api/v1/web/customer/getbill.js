@@ -7,20 +7,20 @@
 const { Joi } = require("../../../../utilities/schemaValidate");
 const { Router } = require("express");
 const commonResolver = require("../../../../utilities/commonResolver");
-const { addContractor } = require("../../../../services/customer/customer");
+const { getbill } = require("../../../../services/customer/customer");
 const router = new Router();
 
 /**
  * @swagger
- * /api/v1/Customer/add:
+ * /api/v1/Customer/getbill:
  *  post:
  *   tags: ["Customer"]
- *   summary: Save Customer information.
- *   description: api used for Save Customer information.
+ *   summary: Save getbill information.
+ *   description: api used for Save getbill information.
  *   parameters:
  *      - in: body
  *        name: lead
- *        description: Save Customer information.
+ *        description: Save getbill information.
  *        schema:
  *         type: object
  *         properties:
@@ -32,6 +32,8 @@ const router = new Router();
  *             type: string
  *           instrumentName:
  *             type: string
+ *           billtotalamount:
+ *             type: number
  *           phone:
  *             type: number
  *           hours:
@@ -45,22 +47,12 @@ const router = new Router();
  *     description: fail
  */
 
-const dataSchema = Joi.object({
-  firstName: Joi.string().required().label("firstName"),
-  lastName: Joi.string().required().label("lastName"),
-  surName: Joi.string().required("surName"),
-  instrumentName: Joi.string().required("instrumentName"),
-  phone: Joi.number().required("phone"),
-  hours: Joi.number().required("hours"),
-  price: Joi.number().required("price"),
-});
+
 
 router.post(
-  "/add",
+  "/getbill",
   commonResolver.bind({
-    modelService: addContractor,
-    isRequestValidateRequired: true,
-    schemaValidate: dataSchema,
+    modelService: getbill,
   })
 );
 

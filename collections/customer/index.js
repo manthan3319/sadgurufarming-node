@@ -1,6 +1,6 @@
 /**
  * This is the indexer for contractor model
- * @author Sandip Vaghasiya
+ * @author Manthan Vaghasiya
  * @since Saturday, May 28, 2022
  */
 
@@ -20,6 +20,7 @@ const customerSchema = new mongoose.Schema({
   email: { type: String },
   password: { type: String },
   micsConNotes: { type: String },
+  date: { type: String },
   address1: { type: String, default: "ra" },
   address2: { type: String },
   loginToken: [

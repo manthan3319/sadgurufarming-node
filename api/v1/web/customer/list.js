@@ -3,17 +3,17 @@
  * @author Manthan Vaghasiya
  *
  */
-
+const { Joi } = require("../../../../utilities/schemaValidate");
 const { Router } = require("express");
 const commonResolver = require("../../../../utilities/commonResolver");
-const { getcontractor } = require("../../../../services/contractor/contractor");
+const { getCustomer } = require("../../../../services/customer/customer");
 const router = new Router();
 
 /**
  * @swagger
- * /api/v1/contractor/getcontractor:
+ * /api/v1/Customer/getCustomer:
  *  post:
- *   tags: ["Contractor"]
+ *   tags: ["Customer"]
  *   summary: get Contractor information.
  *   description: api used for get Contractor information.
  *   parameters:
@@ -23,27 +23,26 @@ const router = new Router();
  *        schema:
  *         type: object
  *         properties:
- *           contractorType:
- *             type: string
- *           page:
- *             type: string
- *           limit:
- *             type: string
+ *           phone:
+ *             type: number
  *   responses:
  *    "200":
  *     description: success
  *    "400":
  *     description: fail
- *   security:
- *      - bearerAuth: []
  */
 
+
+const dataSchema = Joi.object({
+  phone: Joi.number().required("phone")
+});
+
 router.post(
-  "/getcontractor",
+  "/getCustomer",
   commonResolver.bind({
-    modelService: getcontractor,
+    modelService: getCustomer,
     isRequestValidateRequired: true,
+    schemaValidate: dataSchema,
   })
 );
-
 module.exports = router;

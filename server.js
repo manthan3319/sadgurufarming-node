@@ -1,7 +1,7 @@
 /*
  * @file: app.js
  * @description: It Contain server setup functions.
- * @author: Sandip Vaghasiya
+ * @author: Manthan Vaghasiya
  */
 
 require("dotenv").config({ path: ".env" });
@@ -51,6 +51,7 @@ app.use(
 // app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
 var options = {};
+
 
 app.use(
   "/web-api-docs",

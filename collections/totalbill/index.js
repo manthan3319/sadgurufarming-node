@@ -6,15 +6,22 @@
 
 const mongoose = require("mongoose");
 
-const contractorSchema = new mongoose.Schema({
+const customerSchema = new mongoose.Schema({
   firstName: { type: String },
   lastName: { type: String },
+  surName: {type: String},
+  instrumentName: {type: String},
   contractorType: { type: String },
   companyName: { type: String },
   phone: { type: String },
+  hours: { type: Number },
+  price: { type: Number },
+  billtotalamount: { type: Number },
+  totalPrice: { type: String },
   email: { type: String },
   password: { type: String },
   micsConNotes: { type: String },
+  date: { type: String },
   address1: { type: String, default: "ra" },
   address2: { type: String },
   loginToken: [
@@ -42,4 +49,4 @@ const contractorSchema = new mongoose.Schema({
   updatedAt: { type: Date },
 });
 
-module.exports = mongoose.model("contractor", contractorSchema);
+module.exports = mongoose.model("totalbill", customerSchema);

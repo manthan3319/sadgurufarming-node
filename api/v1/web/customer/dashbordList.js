@@ -3,45 +3,39 @@
  * @author Manthan Vaghasiya
  *
  */
-
+const { Joi } = require("../../../../utilities/schemaValidate");
 const { Router } = require("express");
 const commonResolver = require("../../../../utilities/commonResolver");
-const {
-  getcontractorwithid,
-} = require("../../../../services/contractor/contractor");
+const { dashbordList } = require("../../../../services/customer/customer");
 const router = new Router();
 
 /**
  * @swagger
- * /api/v1/contractor/getcontractorwithids:
+ * /api/v1/Customer/dashbordList:
  *  post:
- *   tags: ["Contractor"]
- *   summary: get Contractor information.
- *   description: api used for get Contractor information.
+ *   tags: ["Customer"]
+ *   summary: get dashbordList information.
+ *   description: api used for get dashbordList information.
  *   parameters:
  *      - in: body
  *        name: lead
- *        description: get Contractor information.
+ *        description: get dashbordList information.
  *        schema:
  *         type: object
  *         properties:
- *           id:
- *             type: string
  *   responses:
  *    "200":
  *     description: success
  *    "400":
  *     description: fail
- *   security:
- *      - bearerAuth: []
  */
 
+
+
 router.post(
-  "/getcontractorwithids",
+  "/dashbordList",
   commonResolver.bind({
-    modelService: getcontractorwithid,
-    isRequestValidateRequired: true,
+    modelService: dashbordList,
   })
 );
-
 module.exports = router;

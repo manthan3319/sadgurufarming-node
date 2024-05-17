@@ -3,31 +3,28 @@
  * @author Manthan Vaghasiya
  *
  */
-
 const { Joi } = require("../../../../utilities/schemaValidate");
 const { Router } = require("express");
 const commonResolver = require("../../../../utilities/commonResolver");
-const { addContractor } = require("../../../../services/contractor/contractor");
+const { listtotalbill } = require("../../../../services/customer/customer");
 const router = new Router();
 
 /**
  * @swagger
- * /api/v1/contractor/add:
+ * /api/v1/Customer/listtotalbill:
  *  post:
- *   tags: ["Contractor"]
- *   summary: Save Contractor information.
- *   description: api used for Save Contractor information.
+ *   tags: ["Customer"]
+ *   summary: get listtotalbill information.
+ *   description: api used for get listtotalbill information.
  *   parameters:
  *      - in: body
  *        name: lead
- *        description: Save Contractor information.
+ *        description: get listtotalbill information.
  *        schema:
  *         type: object
  *         properties:
- *           email:
- *             type: string
- *           password:
- *             type: string
+ *           phone:
+ *             type: number
  *   responses:
  *    "200":
  *     description: success
@@ -35,18 +32,17 @@ const router = new Router();
  *     description: fail
  */
 
+
 const dataSchema = Joi.object({
-  email: Joi.string().required().label("email"),
-  password: Joi.string().required("password"),
+  phone: Joi.number().required("phone")
 });
 
 router.post(
-  "/add",
+  "/listtotalbill",
   commonResolver.bind({
-    modelService: addContractor,
+    modelService: listtotalbill,
     isRequestValidateRequired: true,
     schemaValidate: dataSchema,
   })
 );
-
 module.exports = router;
